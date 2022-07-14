@@ -21,7 +21,28 @@ public class Exercise1 {
 
 
     public <T extends Comparable<T>> boolean bstSimilares(BST<T> a1, BST<T> a2){
+         //Si estan vacios retorna true
+    	if(a1.isEmpty() && a2.isEmpty()) {
+    		return true;
+    	//Si un arbol esta vacio y el otro no, retorn false
+    	} else if (a1.isEmpty() || a2.isEmpty()){
+    		return false;
+    	//Si ambos no es tan vacios 
+    	} else {
+            // usamos un metodo recursivo
+    		return similares(a1.root, a2.root);
+    	}
+    }
+     public <T extends Comparable<T>> boolean similares(Node<T> a, Node<T> b){
+    	//Si ambos nodos son nulos quiere decir que el nodo padre no tiene hijos
+    	if(a == null && b == null) {
+    		return true;
+    	//Basta con que un nodo de cualquier arbol sea nulo y el otro, y viceversa, retornara false
+    	} else if((a!= null && b == null) || (a == null && b != null)) {
+    		return false;
+    	}
+    	// usamos recursividad si son nodos padre
+    	return similares(a.left, b.left) && similares(a.right, b.right);
 
-        return false;
     }
 }

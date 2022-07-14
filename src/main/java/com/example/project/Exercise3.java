@@ -17,9 +17,24 @@ public class Exercise3 {
         
     }
 
+public <T extends Comparable<T>> boolean bstEstrictamenteBinario(BST<T> a){
+    	Node<T> aux = a.root; //extraemos la raiz 
+    	if(a.isEmpty()) {
+    		return true; //si esta vacio  es binario
+    	}
+    	return nodeBinario(aux); // metodo recursivo
 
-    public <T extends Comparable<T>> boolean bstEstrictamenteBinario(BST<T> a){
-
-        return false;
+    }
+    private <T extends Comparable<T>> boolean nodeBinario(Node<T> b){
+    	if((b.right != null && b.left == null) || (b.right == null && b.left != null)) { //si un nodo hijo es nulo y el otro no, no sera albol binario
+            return false;
+            
+    	}
+    	else if(b.right != null && b.left != null) { //Si sus hijos son diferente de nulo 
+            return nodeBinario(b.left) && nodeBinario(b.right); //si ambos hijos son perfectamente binarios  arbol  binario 
+    		
+    	}
+    	else //si ambos hijos son nulos sera binario 
+    		return true;
     }
 }
